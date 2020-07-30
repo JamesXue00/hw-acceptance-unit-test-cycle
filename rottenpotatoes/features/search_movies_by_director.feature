@@ -1,3 +1,5 @@
+@CucumberOptions(glue = {"movies_steps.rb", "web_steps.rb"})
+
 Feature: search for movies by director
 
   As a movie buff

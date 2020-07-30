@@ -1,5 +1,5 @@
 
-Given /the following movies exist/ do |movies_table|
+Given /^the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     Movie.create movie
   end
@@ -22,4 +22,13 @@ Then /I should see all the movies/ do
   Movie.all.each do |movie|
     step %{I should see "#{movie.title}"}
   end
+end
+
+Then /^the director of "(.+)" should be "(.+)"/ do |movie_name, director|
+  movie = Movie.find_by(title: movie_name)
+  expect(movie.director).to match(director)
+end
+
+When /^(?:|I )press "([^"]*)"$/ do |button|
+  click_button(button)
 end
